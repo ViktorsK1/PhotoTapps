@@ -12,7 +12,7 @@ class PhotosCollectionViewController: UICollectionViewController {
     
     let photos = ["dog1", "dog2", "dog3", "dog4", "dog5", "dog6", "dog7", "dog8", "dog9", "dog10", "dog11", "dog12", "dog13", "dog14", "dog15"]
     
-    let itemsPerRow: CGFloat = 2
+    let itemsPerRow: CGFloat = 3
     let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
     override func viewDidLoad() {
@@ -28,7 +28,13 @@ class PhotosCollectionViewController: UICollectionViewController {
 //        collectionView.showsVerticalScrollIndicator = false
 //
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pickPhotoSegue" {
+            let photoVC = segue.destination as! PhotoViewController
+            let cell = sender as! PhotoCell
+            photoVC.image = cell.dogImageView.image
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
